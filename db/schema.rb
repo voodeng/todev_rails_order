@@ -11,7 +11,32 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120909093701) do
+ActiveRecord::Schema.define(:version => 20120910151827) do
+
+  create_table "posts", :force => true do |t|
+    t.string   "title"
+    t.string   "desc"
+    t.integer  "user_id"
+    t.string   "thum"
+    t.string   "body"
+    t.boolean  "isbanner"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "posts", ["user_id"], :name => "index_posts_on_user_id"
+
+  create_table "profiles", :id => false, :force => true do |t|
+    t.integer  "user_id"
+    t.string   "slug"
+    t.boolean  "girl"
+    t.text     "body"
+    t.string   "website"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "profiles", ["user_id"], :name => "index_profiles_on_user_id"
 
   create_table "users", :force => true do |t|
     t.string   "username",               :default => "", :null => false

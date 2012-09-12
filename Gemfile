@@ -24,6 +24,7 @@ gem 'jquery-rails'
 
 gem 'devise'
 gem 'cancan'
+gem 'rails_kindeditor'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'

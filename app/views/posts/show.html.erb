@@ -1,0 +1,17 @@
+<article style="background:#fff; padding:10px; text-align:left;">
+  <i class="icon-arrow-left"></i><%= link_to 'Back', posts_path %>
+
+          <h2><%= @post.title %></h2>
+          <p>-- by <%=mail_to  @post.user.email, @post.user.username, :subject =>@post.title %></p>
+
+        <blockquote>        <img src="<%= @post.thum %>" width="50"/> <%= @post.desc %></blockquote>
+
+        <%=sanitize( @post.body )%>
+
+
+
+<%if current_user == @post.user%>
+<hr /><p><i class="icon-edit"></i><%= link_to 'Edit', edit_post_path(@post) %> </p>
+<% end %>
+</article>
+        

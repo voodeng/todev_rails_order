@@ -1,8 +1,16 @@
 Todev::Application.routes.draw do
+  
+  
+  #resources :users
+
   devise_for :users
 
+  resources :posts
+
+  resources :profiles
+
   get "home/index"
-root :to => "home#index"
+root :to => "posts#index"
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

@@ -1,0 +1,37 @@
+<h1>
+  Posts
+  <%= link_to 'New Post', new_post_path, :class=>"btn btn-info" %></h1>
+<br />
+
+<% @posts.each do |post| %>
+<div class="row">
+  <div class="span8" style="background:#fff;border-radius:6px;padding:6px;">
+    <ul class="unstyled">
+      <h3> <strong><%= link_to post.title, post %></strong>
+      </h3>
+      <li class="span3"> <i class="icon-screenshot"></i>
+        <a href="#" class="thumbnail">
+          <%= image_tag(post.thum) %></a>
+        <p></p>
+      </li>
+      <li class="span3">
+        <p>
+          <small>描述:</small>
+          <br/>
+          <%= post.desc %></p>
+      </li>
+
+      <div class="span1">
+        <li > <i class="icon-user"></i><%= post.user_id.blank? ? "-" : post.user.username %></li>
+        <li>
+          <%= link_to 'Show', post %></li>
+        <li>
+          <%= link_to 'Edit', edit_post_path(post) %></li>
+        <li>
+          <%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' }, :class=>"no-ajaxy" %></li>
+      </div>
+    </ul>
+  </div>
+</div>
+<br />
+<% end %>
