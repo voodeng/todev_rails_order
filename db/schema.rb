@@ -11,9 +11,9 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120910151827) do
+ActiveRecord::Schema.define(:version => 20120912164138) do
 
-  create_table "posts", :force => true do |t|
+  create_table "_posts_old_20120911", :force => true do |t|
     t.string   "title"
     t.string   "desc"
     t.integer  "user_id"
@@ -24,7 +24,43 @@ ActiveRecord::Schema.define(:version => 20120910151827) do
     t.datetime "updated_at", :null => false
   end
 
+  create_table "attris", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "carts", :force => true do |t|
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "pa_ships", :id => false, :force => true do |t|
+    t.integer  "product_id"
+    t.integer  "attri_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "posts", :force => true do |t|
+    t.string   "title"
+    t.string   "desc"
+    t.integer  "user_id"
+    t.string   "thum"
+    t.text     "body",       :limit => 255
+    t.boolean  "isbanner"
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
+  end
+
   add_index "posts", ["user_id"], :name => "index_posts_on_user_id"
+
+  create_table "products", :force => true do |t|
+    t.string   "name"
+    t.integer  "ptype"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "profiles", :id => false, :force => true do |t|
     t.integer  "user_id"
@@ -37,6 +73,26 @@ ActiveRecord::Schema.define(:version => 20120910151827) do
   end
 
   add_index "profiles", ["user_id"], :name => "index_profiles_on_user_id"
+
+  create_table "proitems", :force => true do |t|
+    t.integer  "product_id"
+    t.string   "someline"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.integer  "cart_id"
+  end
+
+  add_index "proitems", ["product_id"], :name => "index_proitems_on_product_id"
+
+  create_table "properties", :force => true do |t|
+    t.integer  "attri_id"
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.string   "pdesc"
+  end
+
+  add_index "properties", ["attri_id"], :name => "index_properties_on_attri_id"
 
   create_table "users", :force => true do |t|
     t.string   "username",               :default => "", :null => false

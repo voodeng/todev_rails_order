@@ -1,0 +1,27 @@
+<h1>Listing proitems</h1>
+
+<table>
+  <tr>
+    <th>Product</th>
+    <th>Someline</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @proitems.each do |proitem| %>
+  <tr>
+	  <td><%= proitem.id %></td>
+    <td><%= link_to 'GOTOPRODUCT', product_path(proitem.product, :k => proitem.id) %></td>
+	<td><%= proitem.product.id unless proitem.product.blank? %></td>
+    <td><%= proitem.someline %></td>
+    <td><%= link_to 'Show', proitem %></td>
+    <td><%= link_to 'Edit', edit_proitem_path(proitem) %></td>
+    <td><%= link_to 'Destroy', proitem, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Proitem', new_proitem_path %>

@@ -1,0 +1,17 @@
+<p id="notice"><%= notice %></p>
+
+
+
+<p>
+  <b>Product:</b>
+  <%= @proitem.product %>
+</p>
+
+<p>
+  <b>Someline:</b>
+  <%= @proitem.someline %>
+</p>
+
+
+<%= link_to 'Edit', edit_proitem_path(@proitem) %> |
+<%= link_to 'Back', proitems_path %>

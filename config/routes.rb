@@ -1,6 +1,18 @@
 Todev::Application.routes.draw do
   
   
+  resources :carts
+
+  resources :proitems
+
+  resources :products do
+    resources :proitems , :only => [:create]
+  end
+
+  resources :properties
+
+  resources :attris
+
   #resources :users
 
   devise_for :users

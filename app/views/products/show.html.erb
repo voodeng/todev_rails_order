@@ -1,0 +1,46 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+	kilo = <%= @product.proitems.find(params[:k]).someline%>
+</p>
+<script type="text/javascript" charset="utf-8">
+$(document).ready(function(){
+		//var be = $.parseJSON('<%= sanitize(params[:kilo])%>')
+		//$.each(be.custom, function(i,val){
+		//	$("input:radio[value="+be.custom[i]+"]").attr("checked",true)
+		//})
+
+		
+
+	})
+	var be = "<%= @product.proitems.find(params[:k]).someline.split(',') %>"
+</script>
+<p>
+  <b>Name:</b>
+  <%= @product.name %>
+</p>
+
+<p>
+  <b>Ptype:</b>
+  <%= @product.ptype %>
+</p>
+
+<p> <b>拥有属性：</b>
+<% @product.attris.each do |a| %>
+	<ul><%= a.name%>:
+	<% a.properties.each do |ap| %>
+	<li><%= radio_button_tag a.name, ap.id %><%= ap.name%></li>
+		
+	<% end %>
+	</ul>
+<% end %>
+</p>
+<%= simple_form_for proitems_path do |f| %>
+  <%= f.input :product_id %>
+<% end %>
+
+<div id="jqz">
+	
+</div>
+<%= link_to 'Edit', edit_product_path(@product) %> |
+<%= link_to 'Back', products_path %>
