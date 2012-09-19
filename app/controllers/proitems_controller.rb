@@ -15,6 +15,9 @@ class ProitemsController < ApplicationController
   def show
     @proitem = Proitem.find(params[:id])
 
+    k = @proitem.someline.split(',')
+
+    @prop = Property.find(k)
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @proitem }
@@ -45,7 +48,9 @@ class ProitemsController < ApplicationController
     #@proitem = Proitem.new(:product_id => @product.id)
     @cart = current_cart
     @product = Product.find(params[:product_id])
-    @proitem = @cart.proitems.build(:product_id => @product.id)
+    #someline = params[:proitem_someline]
+    #@proitem = @cart.proitems.build(:product_id => @product.id, :someline => someline)
+    @proitem = @cart.proitems.create(params[:proitem])
     respond_to do |format|
       if @proitem.save
         format.html { redirect_to @product, notice: 'Proitem was successfully created.' }

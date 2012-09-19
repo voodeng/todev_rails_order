@@ -3,4 +3,5 @@ class Product < ActiveRecord::Base
   has_many :attris, :through => :pa_ships
   has_many :pa_ships
   has_many :proitems, :dependent => :destroy
+  validates :name, :ptype, :presence => true
 end

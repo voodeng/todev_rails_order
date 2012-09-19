@@ -1,15 +1,27 @@
 <p id="notice"><%= notice %></p>
 
-
-
 <p>
   <b>Product:</b>
-  <%= @proitem.product %>
+  #<%= @proitem.product.id %>
+  <%= @proitem.product.name %>
 </p>
+
+<p> Product2 Meta: <br> 
+
+<% @prop.each do |a| %>
+	<li><%= a.attri.name%> : <%= a.name %></li>
+<% end %>
+
+</p>
+
 
 <p>
   <b>Someline:</b>
-  <%= @proitem.someline %>
+  <%= @proitem.someline.split(",") %>
+  <%= @product.id  %>
+  <%#= @prop.each do |p| %>
+  <%#= "#{p.attri.name} :#{p.name}" %> <br>
+  <%#end -%>
 </p>
 
 

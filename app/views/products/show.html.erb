@@ -1,19 +1,35 @@
 <p id="notice"><%= notice %></p>
-
+<%= include_gon %>
 <p>
-	kilo = <%= @product.proitems.find(params[:k]).someline%>
+	<% if params[:k] %>
+	kilo = <%= @product.proitems.find(params[:k]).someline %>
+	<% end %>
 </p>
 <script type="text/javascript" charset="utf-8">
 $(document).ready(function(){
-		//var be = $.parseJSON('<%= sanitize(params[:kilo])%>')
-		//$.each(be.custom, function(i,val){
-		//	$("input:radio[value="+be.custom[i]+"]").attr("checked",true)
-		//})
 
-		
+		//var be = $.parseJSON('<%#= sanitize(@product.proitems.find(params[:k]).someline)%>')
+		//var be = new Array
+		//be = gon.karray
+		$.each(gon.karray, function(i,val){
+			$("input:radio[value="+gon.karray[i]+"]").attr("checked",true)
+		})
+
+		$("#getandot").click(function(){
+			
+			var isn = $("input:radio:checked")
+			var stt= new Array
+			$.each(isn, function(i,val) {
+				
+				stt[i] = isn[i].value
+			})
+			$("#proitem_someline").val(stt)
+			return
+		})	
 
 	})
-	var be = "<%= @product.proitems.find(params[:k]).someline.split(',') %>"
+	var be = "<%#= @product.proitems.find(params[:k]).someline.split(',') %>"
+	
 </script>
 <p>
   <b>Name:</b>
@@ -35,12 +51,20 @@ $(document).ready(function(){
 	</ul>
 <% end %>
 </p>
-<%= simple_form_for proitems_path do |f| %>
-  <%= f.input :product_id %>
+
+
+<%= form_for([@product, @product.proitems.build]) do |f| %>
+  <div class="field">
+    <%= f.text_field :product_id, :value=>@product.id , :type=>"hidden" %>
+  </div>
+  <div class="field">
+    <%= f.text_field :someline, :value=>" " , :type=>"hidden" %>
+  </div>
+  <div class="actions">
+    <%= f.submit "add to proitems",:id=>"getandot"%>
+  </div>
 <% end %>
 
-<div id="jqz">
-	
-</div>
+
 <%= link_to 'Edit', edit_product_path(@product) %> |
 <%= link_to 'Back', products_path %>
