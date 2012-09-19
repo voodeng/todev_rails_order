@@ -5,7 +5,7 @@ class CreatePosts < ActiveRecord::Migration
       t.string :desc
       t.references :user
       t.string :thum
-      t.body :body
+      t.text :body
       t.boolean :isbanner
 
       t.timestamps
